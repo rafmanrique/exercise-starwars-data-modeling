@@ -25,14 +25,16 @@ class Favorites(Base):
     character_id = Column(Integer, ForeignKey('character.id'))
     vehicle_id = Column(Integer, ForeignKey('vehicle.id'))
     user = relationship('user')
-    user = relationship('planet')
+    planet = relationship('planet')
+    character = relationship('character')
+    vehicle = relationship('vehicle')
 
 class Planet(Base):
     __tablename__ = 'planet'
     id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False)
     population = Column(Integer, nullable=False)
-    favorites = relationship('favorites')
+    
     
 
 class Character(Base):
@@ -40,6 +42,7 @@ class Character(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False)
     age = Column(Integer)
+    
 
 
 class Vehicle(Base):
@@ -47,6 +50,7 @@ class Vehicle(Base):
     id = Column(Integer, primary_key=True)
     model = Column(String(50), nullable=False)
     vehicle_type = Column(String(50), nullable=False)
+    
 
 ## Draw from SQLAlchemy base
 render_er(Base, 'diagram.png')
