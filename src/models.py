@@ -15,7 +15,7 @@ class User(Base):
     first_name = Column(String(15), nullable=False)
     last_name = Column(String(15), nullable=False)
     email = Column(String(50), nullable=False, unique = True)
-    favorites = relationship('favorites')
+    
 
 class Favorites(Base):
     __tablename__ = 'favorites'
