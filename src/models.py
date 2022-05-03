@@ -24,10 +24,10 @@ class Favorites(Base):
     planet_id = Column(Integer, ForeignKey('planet.id'))
     character_id = Column(Integer, ForeignKey('character.id'))
     vehicle_id = Column(Integer, ForeignKey('vehicle.id'))
-    user = relationship('user')
-    planet = relationship('planet')
-    character = relationship('character')
-    vehicle = relationship('vehicle')
+    user = relationship('User', backref = "favorites")
+    planet = relationship('Planet', backref = "favorites")
+    character = relationship('Character', backref = "favorites")
+    vehicle = relationship('Vehicle', backref = "favorites")
 
 class Planet(Base):
     __tablename__ = 'planet'
