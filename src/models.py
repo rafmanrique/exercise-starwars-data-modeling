@@ -15,6 +15,7 @@ class User(Base):
     first_name = Column(String(15), nullable=False)
     last_name = Column(String(15), nullable=False)
     email = Column(String(50), nullable=False, unique = True)
+    favorites = relationship('Favorites', backref = "user", uselist = True)
     
 
 class Favorites(Base):
@@ -24,10 +25,9 @@ class Favorites(Base):
     planet_id = Column(Integer, ForeignKey('planet.id'))
     character_id = Column(Integer, ForeignKey('character.id'))
     vehicle_id = Column(Integer, ForeignKey('vehicle.id'))
-    user = relationship('User', backref = "favorites")
-    planet = relationship('Planet', backref = "favorites")
-    character = relationship('Character', backref = "favorites")
-    vehicle = relationship('Vehicle', backref = "favorites")
+    planet = relationship('Planet', backref = "favorites", uselist = True)
+    character = relationship('Character', backref = "favorites", uselist = True)
+    vehicle = relationship('Vehicle', backref = "favorites", uselist = True)
 
 class Planet(Base):
     __tablename__ = 'planet'
